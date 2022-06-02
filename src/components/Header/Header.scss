@@ -1,0 +1,15 @@
+@use '../../styles/variables.scss'as *;
+
+.logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $tertiary;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    background-color: $secondary;
+    color: $primary;
+}
