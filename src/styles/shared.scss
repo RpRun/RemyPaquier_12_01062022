@@ -1,0 +1,7 @@
+@use './variables.scss'as *;
+
+#root {
+    font-family: $font;
+    max-width: 1024px;
+    height: 100vh;
+}

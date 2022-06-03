@@ -1,16 +1,17 @@
 import React from 'react';
-import Nav from '../Nav/Nav';
+import TopMenu from '../Menu/TopMenu/TopMenu';
 import logo from '../../assets/logo-SportSee.svg';
 import './Header.scss';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="logo-wrapper">
+      <Link className="logo-link" to="/">
         <img src={logo} alt="running man" />
         <h1>SportSee</h1>
-      </div>
-      <Nav />
+      </Link>
+      <TopMenu />
     </header>
   );
 };

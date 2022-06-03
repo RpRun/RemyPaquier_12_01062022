@@ -1,0 +1,28 @@
+@use '../../styles/variables.scss'as *;
+
+
+.aside {
+    background-color: $secondary;
+    width: 117px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    top: 91px;
+}
+
+.copyright {
+    color: $primary;
+    display: flex;
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+    height: 117px;
+    width: 100px;
+    position: absolute;
+    bottom: 0px;
+    width: 200px;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 12px;
+    line-height: 24px;
+}

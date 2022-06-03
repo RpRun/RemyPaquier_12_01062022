@@ -1,0 +1,16 @@
+.left-nav--list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15rem;
+}
+
+.left-nav--item {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+}

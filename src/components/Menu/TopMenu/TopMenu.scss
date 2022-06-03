@@ -1,0 +1,15 @@
+.top-nav {
+    flex-grow: 2;
+}
+
+.top-nav--list {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em;
+}
+
+.top-nav--link {
+    text-decoration: none;
+    color: white;
+    margin: 1em;
+}
