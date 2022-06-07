@@ -6,7 +6,12 @@ const Dashboard = () => {
   return (
     <main className="main-profile">
       <Aside />
-      Dashboard
+      <div className="header-like">
+        <h2>
+          Bonjour <span className="user-firstname">toto</span>
+        </h2>
+        <p>Félicitations! Vous avez explosé vos objectifs hier</p>
+      </div>
     </main>
   );
 };
