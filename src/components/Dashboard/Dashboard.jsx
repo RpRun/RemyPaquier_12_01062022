@@ -1,4 +1,5 @@
 import React from 'react';
+import GetData from '../../utils/GetData';
 import Aside from '../Aside/Aside';
 import './Dashboard.scss';
 
@@ -12,6 +13,7 @@ const Dashboard = () => {
         </h2>
         <p>Félicitations! Vous avez explosé vos objectifs hier</p>
       </div>
+      <GetData>pouet</GetData>
     </main>
   );
 };
