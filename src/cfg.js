@@ -1,5 +1,6 @@
 const userId = 12
-const pathbyUser = "http://localhost:3001/user/" + userId
+const pathbyUser = "/user/" + userId
+// const MOCK_CONFIG = 
 
 export {
     userId,

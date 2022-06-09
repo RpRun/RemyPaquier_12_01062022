@@ -2,9 +2,10 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { userId } from '../cfg';
+// import MOCKED_DATA from '../utils/data/mockedData.js';
 
-const MOCKED_DATA = './data/mockedData.js';
-// const API_URL = 'http://localhost:3001/user/12/';
+const MOCKED_DATA = '../utils/data/mockedData.js';
+
 const API_URL = 'http://localhost:3000/user/' + userId;
 
 // At the beginning, no user data
@@ -24,7 +25,7 @@ const GetData = () => {
     fetchData();
   }, []);
   console.log('userData', userData);
-  if (userData === null) {
+  if (!userData) {
     return <div>loadiiing.....</div>;
   }
   return (
