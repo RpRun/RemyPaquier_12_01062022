@@ -1,33 +1,44 @@
-// import { useState, useEffect } from 'react';
-// import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { userId, isMocked } from '../../cfg';
+import mockedData from '../../data/mockedData';
+import sportSeeAPI from '../../api/sportSeeAPI';
 
-// axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+const API_SRC = `/user/${userId}`;
 
-// const useAxios = () => {
-//     const [response, setResponse] = useState(null);
-//     const [error, setError] = useState('');
-//     const [loading, setloading] = useState(true);
+const useAxios = () => {
+  const [userData, setUserData] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-//     const fetchData = () => {
-//         axios
-//             .get('/posts')
-//             .then((res) => {
-//                 setResponse(res.data);
-//             })
-//             .catch((err) => {
-//                 setError(err);
-//             })
-//             .finally(() => {
-//                 setloading(false);
-//             });
-//     };
+  // set isMocked true or false in cfg.js to fetch data
+  useEffect(() => {
+    isMocked ? fetchMockedData() : fetchUserData();
+  }, []);
 
-//     useEffect(() => {
-//         fetchData();
-//     }, []);
+  //react axios get method
+  const fetchUserData = async () => {
+    try {
+      const response = await sportSeeAPI.get(API_SRC);
+      setUserData(response.data);
+      console.log('fetched API data', response.data);
+      setIsLoading(false);
+    } catch (err) {
+      setError(true);
+      console.log(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-//     // custom hook returns value
-//     return { response, error, loading };
-// };
+  // recupere json importé localement
+  const fetchMockedData = () => {
+    console.log('fetch mocked data', mockedData);
+    setUserData(mockedData);
+    setIsLoading(false);
+  };
 
-// export default useAxios;
+  // custom hook returns value
+  return { userData, isLoading, error };
+};
+
+export default useAxios;

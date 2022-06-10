@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { userId, pathbyUser } from '../../../cfg';
+import { userId, pathByUser } from '../../../cfg';
 import './TopMenu.scss';
 
 const TopMenu = () => {
@@ -12,17 +12,17 @@ const TopMenu = () => {
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to={pathbyUser}>
+          <Link className="top-nav--link" to={pathByUser}>
             Profil
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to={pathbyUser + '/settings'}>
+          <Link className="top-nav--link" to={pathByUser + '/settings'}>
             Réglage
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to={pathbyUser + '/community'}>
+          <Link className="top-nav--link" to={pathByUser + '/community'}>
             Communauté
           </Link>
         </li>
