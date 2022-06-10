@@ -1,8 +1,9 @@
-let userId = 12
-const pathbyUser = "/user/" + userId
-// const MOCK_CONFIG = 
+const userId = 12
+const pathbyUser = `/user/${userId}`
+const isMocked = false
 
 export {
     userId,
-    pathbyUser
+    pathbyUser,
+    isMocked
 };

@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import UserDataContext from '../../utils/context/UserDataContext';
 import Error from '../../views/Error/Error';
-// import GetData from '../../utils/GetData';
 import Aside from '../Aside/Aside';
 import Loader from '../Loader/Loader';
 import './Dashboard.scss';
@@ -12,7 +11,6 @@ const Dashboard = () => {
   if (error) {
     return <Error />;
   }
-  console.log('data qui charge', userData);
   return isLoading ? (
     <Loader />
   ) : (

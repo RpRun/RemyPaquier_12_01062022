@@ -1,18 +1,18 @@
 import { createContext, useState, useEffect } from 'react';
 import sportSeeAPI from '../../api/sportSeeAPI';
-import { userId } from '../../cfg';
+import { userId, isMocked } from '../../cfg';
 import mockedData from '../../data/mockedData';
 
 const UserDataContext = createContext();
-const API_SRC = `http://localhost:3000/user/${userId}`;
+const API_SRC = `/user/${userId}`;
 
 export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  // set isMocked true or false in cfg.js to fetch data
   useEffect(() => {
-    const isMocked = false;
     isMocked ? fetchMockedData() : fetchUserData();
   }, []);
 
@@ -33,7 +33,7 @@ export const UserDataProvider = ({ children }) => {
 
   // recupere json importé localement
   const fetchMockedData = () => {
-    console.log('fetchmockeddata', mockedData);
+    console.log('fetch mockeddata', mockedData);
     setUserData(mockedData);
     setIsLoading(false);
   };
