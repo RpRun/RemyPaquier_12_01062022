@@ -9,9 +9,10 @@ const API_SRC = `http://localhost:3000/user/${userId}`;
 export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const isMocked = true;
+    const isMocked = false;
     isMocked ? fetchMockedData() : fetchUserData();
   }, []);
 
@@ -23,7 +24,10 @@ export const UserDataProvider = ({ children }) => {
       console.log('fetched data', response.data);
       setIsLoading(false);
     } catch (err) {
+      setError(true);
       console.log(err.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -35,7 +39,7 @@ export const UserDataProvider = ({ children }) => {
   };
 
   return (
-    <UserDataContext.Provider value={{ userData, isLoading }}>
+    <UserDataContext.Provider value={{ userData, isLoading, error }}>
       {children}
     </UserDataContext.Provider>
   );

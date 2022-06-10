@@ -1,17 +1,20 @@
 import { useContext } from 'react';
 import UserDataContext from '../../utils/context/UserDataContext';
+import Error from '../../views/Error/Error';
 // import GetData from '../../utils/GetData';
 import Aside from '../Aside/Aside';
+import Loader from '../Loader/Loader';
 import './Dashboard.scss';
 
 const Dashboard = () => {
-  const { userData, isLoading } = useContext(UserDataContext);
-  if (!isLoading && !userData && userData.length === 0) {
-    return <p>Ca charge pas</p>;
+  const { userData, isLoading, error } = useContext(UserDataContext);
+  // if (!isLoading && !userData && userData.length === 0) {
+  if (error) {
+    return <Error />;
   }
   console.log('data qui charge', userData);
   return isLoading ? (
-    <h1>ca charge</h1>
+    <Loader />
   ) : (
     <main className="main-profile">
       <Aside />
