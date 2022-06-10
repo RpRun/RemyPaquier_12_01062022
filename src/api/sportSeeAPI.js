@@ -4,5 +4,5 @@ import axios from 'axios'
 // we don’t have to type the whole URL request for 
 // each Axios request method.
 export default axios.create({
-    baseURL: "http://localhost:3002",
+    baseURL: "http://localhost:3001",
 })

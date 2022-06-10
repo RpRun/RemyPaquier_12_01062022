@@ -1,4 +1,4 @@
-const userId = 12
+let userId = 12
 const pathbyUser = "/user/" + userId
 // const MOCK_CONFIG = 
 

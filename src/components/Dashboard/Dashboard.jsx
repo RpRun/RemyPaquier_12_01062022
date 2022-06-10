@@ -9,6 +9,7 @@ const Dashboard = () => {
   if (!isLoading && !userData && userData.length === 0) {
     return <p>Ca charge pas</p>;
   }
+  console.log('data qui charge', userData);
   return isLoading ? (
     <h1>ca charge</h1>
   ) : (
