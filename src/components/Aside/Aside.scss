@@ -4,11 +4,19 @@
 .aside {
     background-color: $secondary;
     width: 117px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     position: absolute;
     bottom: 0;
-    top: 91px;
+    top: 90px;
+    left: 0;
+
+    & nav {
+        display: flex;
+        justify-content: center;
+        height: 65%;
+    }
 }
 
 .copyright {

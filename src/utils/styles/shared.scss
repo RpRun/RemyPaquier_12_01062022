@@ -1,7 +1,20 @@
 @use './variables.scss'as *;
 
-#root {
+body {
+    min-height: 100vh;
     font-family: $font;
-    max-width: 1024px;
-    height: 100vh;
+    display: flex;
+}
+
+#root {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    // max-width: 1440px;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    min-height: 100vh;
 }

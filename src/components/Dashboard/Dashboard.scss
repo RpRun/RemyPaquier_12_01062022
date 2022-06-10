@@ -1,13 +1,40 @@
+@use '../../utils/styles/variables.scss'as *;
+
 .main-profile {
     display: flex;
-    // min-height: 700px;
-    // height: 100vh;
+    flex-direction: column;
+    margin-top: 3rem;
+    width: 70%;
+    border: solid 4px red;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header-like {
     display: flex;
     flex-direction: column;
+    color: #000000;
+
+    & h2 {
+        font-size: 48px;
+        line-height: 24px;
+    }
+
+    & p {
+        margin-top: 2rem;
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+}
+
+.user-firstName {
+    color: $tertiary;
+}
+
+.stats-wrapper {
+    display: flex;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 3rem;
 }
