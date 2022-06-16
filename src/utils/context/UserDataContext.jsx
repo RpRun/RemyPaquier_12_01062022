@@ -4,10 +4,26 @@ import useAxios from '../hooks';
 const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
-  const { userData, isLoading, error } = useAxios();
+  const {
+    userData,
+    userDataActivity,
+    userDataAverage,
+    userDataPerformance,
+    isLoading,
+    error,
+  } = useAxios();
 
   return (
-    <UserDataContext.Provider value={{ userData, isLoading, error }}>
+    <UserDataContext.Provider
+      value={{
+        userData,
+        userDataActivity,
+        userDataAverage,
+        userDataPerformance,
+        isLoading,
+        error,
+      }}
+    >
       {children}
     </UserDataContext.Provider>
   );

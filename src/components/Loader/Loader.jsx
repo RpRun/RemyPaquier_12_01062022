@@ -2,9 +2,9 @@ import './Loader.scss';
 
 const Loader = () => {
   return (
-    <div class="loader">
-      <div class="spinner">
-        <div class="spinner-bg"></div>
+    <div className="loader">
+      <div className="spinner">
+        <div className="spinner-bg"></div>
       </div>
     </div>
   );

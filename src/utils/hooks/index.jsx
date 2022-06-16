@@ -5,8 +5,16 @@ import sportSeeAPI from '../../api/sportSeeAPI';
 
 const API_SRC = `/user/${userId}`;
 
+const API_SRC_ACTIVITY = `/user/${userId}/activity`;
+const API_SRC_AVERAGE = `/user/${userId}/average-sessions`;
+const API_SRC_PERFORMANCE = `/user/${userId}/performance`;
+
 const useAxios = () => {
   const [userData, setUserData] = useState('');
+
+  const [userDataActivity, setUserDataActivity] = useState('');
+  const [userDataAverage, setUserDataAverage] = useState('');
+  const [userDataPerformance, setUserDataPerformance] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -19,8 +27,16 @@ const useAxios = () => {
   const fetchUserData = async () => {
     try {
       const response = await sportSeeAPI.get(API_SRC);
+      const responseActivity = await sportSeeAPI.get(API_SRC_ACTIVITY);
+      const responseAverage = await sportSeeAPI.get(API_SRC_AVERAGE);
+      const responsePerformance = await sportSeeAPI.get(API_SRC_PERFORMANCE);
       setUserData(response.data);
-      console.log('fetched API data', response.data);
+      setUserDataActivity(responseActivity.data);
+      setUserDataAverage(responseAverage.data);
+      setUserDataPerformance(responsePerformance.data);
+
+      console.log('fetched API data activity', responsePerformance.data);
+
       setIsLoading(false);
     } catch (err) {
       setError(true);
@@ -38,7 +54,14 @@ const useAxios = () => {
   };
 
   // custom hook returns value
-  return { userData, isLoading, error };
+  return {
+    userData,
+    userDataActivity,
+    userDataAverage,
+    userDataPerformance,
+    isLoading,
+    error,
+  };
 };
 
 export default useAxios;
