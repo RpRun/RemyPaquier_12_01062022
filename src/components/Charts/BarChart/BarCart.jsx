@@ -26,24 +26,35 @@ const BarCart = () => {
   ) : (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        width={500}
-        height={300}
-        data={userDataActivity.data.sessions}
+        width={702}
+        height={145}
         margin={{
-          top: 20,
+          top: 112,
           right: 30,
-          left: 20,
-          bottom: 20,
+          left: 43,
+          bottom: 63,
         }}
+        data={userDataActivity.data.sessions}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="userDataActivity.data.sessions.day" />
+        <XAxis />
         {/* <YAxis dataKey="userDataActivity.data.sessions.kilogram" /> */}
         <YAxis />
         <Tooltip />
-        <Legend />
-        <Bar dataKey="kilogram" fill="#8884d8" background={{ fill: '#eee' }} />
-        <Bar dataKey="calories" fill="#82ca9d" />
+        <Legend verticalAlign="top" align="right" layout="horizontal" />
+        <Bar
+          dataKey="kilogram"
+          fill="#282D30"
+          radius={[3, 3, 0, 0]}
+          barSize={7}
+          // background={{ fill: '#C4C4C4' }}
+        />
+        <Bar
+          dataKey="calories"
+          fill="#E60000"
+          radius={[3, 3, 0, 0]}
+          barSize={7}
+        />
       </BarChart>
     </ResponsiveContainer>
   );
