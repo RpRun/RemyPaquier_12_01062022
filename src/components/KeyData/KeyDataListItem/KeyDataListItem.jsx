@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import './KeyDataListItem.scss';
+import UserDataContext from '../../../utils/context/UserDataContext';
+import Error from '../../../views/Error/Error';
+import Loader from '../../Loader/Loader';
 const KeyDataListItem = ({ picture, number, type }) => {
+  // const { userData, isLoading, error } = useContext(UserDataContext);
+
+  // if (error) {
+  //   return <Error />;
+  // }
+  // return isLoading ? (
+  //   <Loader />
+  // ) :
   return (
     <div className="key-data">
       <img src={picture} alt="" />
