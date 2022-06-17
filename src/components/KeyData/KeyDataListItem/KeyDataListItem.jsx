@@ -4,7 +4,7 @@ import './KeyDataListItem.scss';
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
-const KeyDataListItem = ({ picture, number, type }) => {
+const KeyDataListItem = ({ picture, number, unit, type }) => {
   // const { userData, isLoading, error } = useContext(UserDataContext);
 
   // if (error) {
@@ -17,7 +17,10 @@ const KeyDataListItem = ({ picture, number, type }) => {
     <div className="key-data">
       <img src={picture} alt="" />
       <div className="key-data-content">
-        <p>{number}</p>
+        <p>
+          {number}
+          {unit}
+        </p>
         <h3>{type}</h3>
       </div>
     </div>

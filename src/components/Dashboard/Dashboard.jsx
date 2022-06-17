@@ -53,21 +53,26 @@ const Dashboard = () => {
           <KeyDataListItem
             picture={Burn}
             number={userData.data.keyData.calorieCount}
+            unit={'kCal'}
             type={'Calories'}
           />
           <KeyDataListItem
             picture={Chicken}
             number={userData.data.keyData.proteinCount}
+            unit={'g'}
             type={'Protéines'}
           />
           <KeyDataListItem
             picture={Apple}
             number={userData.data.keyData.carbohydrateCount}
-            type={'glucides'}
+            unit={'g'}
+            type={'Glucides'}
           />
+
           <KeyDataListItem
             picture={Burger}
             number={userData.data.keyData.lipidCount}
+            unit={'g'}
             type={'Lipides'}
           />
         </div>
