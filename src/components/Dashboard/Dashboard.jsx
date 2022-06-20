@@ -1,17 +1,16 @@
 import { useContext } from 'react';
 import UserDataContext from '../../utils/context/UserDataContext';
 import Error from '../../views/Error/Error';
-import BarCart from '../Charts/BarChart/BarCart';
-import LineChart from '../Charts/LineChart/LineChart';
-import RadarChart2 from '../Charts/RadarChart/RadarChart';
 import Loader from '../Loader/Loader';
 import './Dashboard.scss';
 import Burn from '../../assets/calories-icon.svg';
 import Chicken from '../../assets/protein-icon.svg';
 import Apple from '../../assets/carbs-icon.svg';
 import Burger from '../../assets/fat-icon.svg';
-
-import KeyDataListItem from '../KeyData/KeyDataListItem/KeyDataListItem';
+import KeyData from '../KeyData/KeyData';
+import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChartAverageSession';
+import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
+import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 
 const Dashboard = () => {
   const { userData, isLoading } = useContext(UserDataContext);
@@ -30,46 +29,48 @@ const Dashboard = () => {
             {userData.data.userInfos.firstName}
           </span>
         </h2>
-        <p>Félicitations! Vous avez explosé vos objectifs hier👏 👏</p>
+        <p>Félicitations! Vous avez explosé vos objectifs hier👏</p>
       </div>
       <div className="main-content">
         <div className="charts-wrapper">
           <div className="daily-activity">
-            <BarCart />
+            <h3>Activité quotidienne</h3>
+            <BarChartDailyActivity />
           </div>
           <div className="squares-charts-container">
             <div className="square-chart--line">
-              <h2>Durée moyenne des sessions</h2>
-              <LineChart />
+              <h3>
+                Durée moyenne des <br /> sessions
+              </h3>
+              <LineChartAverageSession />
             </div>
             <div className="square-chart--radar">
-              <RadarChart2 />
+              <RadarChartActivity />
             </div>
 
             <div className="square-chart--goal">score objectif</div>
           </div>
         </div>
         <div className="nutrition-wrapper">
-          <KeyDataListItem
+          <KeyData
             picture={Burn}
             number={userData.data.keyData.calorieCount}
             unit={'kCal'}
             type={'Calories'}
           />
-          <KeyDataListItem
+          <KeyData
             picture={Chicken}
             number={userData.data.keyData.proteinCount}
             unit={'g'}
             type={'Protéines'}
           />
-          <KeyDataListItem
+          <KeyData
             picture={Apple}
             number={userData.data.keyData.carbohydrateCount}
             unit={'g'}
             type={'Glucides'}
           />
-
-          <KeyDataListItem
+          <KeyData
             picture={Burger}
             number={userData.data.keyData.lipidCount}
             unit={'g'}

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import './KeyDataListItem.scss';
-import UserDataContext from '../../../utils/context/UserDataContext';
-import Error from '../../../views/Error/Error';
-import Loader from '../../Loader/Loader';
-const KeyDataListItem = ({ picture, number, unit, type }) => {
+import './KeyData.scss';
+import UserDataContext from '../../utils/context/UserDataContext';
+import Error from '../../views/Error/Error';
+import Loader from '../Loader/Loader';
+const KeyData = ({ picture, number, unit, type }) => {
   // const { userData, isLoading, error } = useContext(UserDataContext);
 
   // if (error) {
@@ -33,4 +33,4 @@ const KeyDataListItem = ({ picture, number, unit, type }) => {
 //   type: PropTypes.string,
 // };
 
-export default KeyDataListItem;
+export default KeyData;

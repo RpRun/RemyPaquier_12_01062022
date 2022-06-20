@@ -35,7 +35,7 @@ const useAxios = () => {
       setUserDataAverage(responseAverage.data);
       setUserDataPerformance(responsePerformance.data);
 
-      console.log('fetched API data activity', responsePerformance.data);
+      // console.log('fetched API data PERFORMANCE', responsePerformance.data);
 
       setIsLoading(false);
     } catch (err) {

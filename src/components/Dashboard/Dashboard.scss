@@ -58,6 +58,14 @@
     width: 100%;
     background-color: #FBFBFB;
     border-radius: 5px;
+
+    & h3 {
+        Font-size: 15px;
+        Line-height: 24px;
+        color: #20253A;
+        margin-top: 24px;
+        margin-left: 32px;
+    }
 }
 
 .squares-charts-container {
@@ -76,6 +84,16 @@
 .square-chart--line {
     background-color: #FF0000;
     color: #FFFFFF;
+    position: relative;
+
+    & h3 {
+        Font-size: 15px;
+        Line-height: 24px;
+        opacity: 50.4%;
+        top: 29px;
+        left: 34px;
+        position: absolute;
+    }
 }
 
 .square-chart--radar {

@@ -14,9 +14,9 @@ import UserDataContext from '../../../utils/context/UserDataContext';
 import Loader from '../../Loader/Loader';
 import Error from '../../../views/Error/Error';
 
-const BarCart = () => {
+const BarChartDailyActivity = () => {
   const { userDataActivity, isLoading, error } = useContext(UserDataContext);
-  // console.log('bar chart', userDataActivity.data.sessions);
+  console.log('bar chart', userDataActivity.data.sessions);
 
   if (error) {
     return <Error />;
@@ -26,22 +26,26 @@ const BarCart = () => {
   ) : (
     <ResponsiveContainer width="100%" height="100%">
       <BarChart
-        width={702}
-        height={145}
+        width="100%"
+        height="100%"
         margin={{
-          top: 112,
+          top: 11,
           right: 30,
-          left: 43,
+          left: 30,
           bottom: 63,
         }}
         data={userDataActivity.data.sessions}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis />
-        {/* <YAxis dataKey="userDataActivity.data.sessions.kilogram" /> */}
-        <YAxis />
+        <YAxis dataKey="calories" />
         <Tooltip />
-        <Legend verticalAlign="top" align="right" layout="horizontal" />
+        <Legend
+          verticalAlign="top"
+          height={70}
+          align="right"
+          layout="horizontal"
+        />
         <Bar
           dataKey="kilogram"
           fill="#282D30"
@@ -60,4 +64,4 @@ const BarCart = () => {
   );
 };
 
-export default BarCart;
+export default BarChartDailyActivity;

@@ -7,8 +7,6 @@ import './utils/styles/shared.scss';
 import App from './App';
 import { UserDataProvider } from './utils/context/UserDataContext';
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// const root = ReactDOM.createRoot(document.getElementById('root'));
 ReactDOM.render(
   <React.StrictMode>
     <UserDataProvider>
