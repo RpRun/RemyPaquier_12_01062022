@@ -13,10 +13,28 @@ import React, { useContext } from 'react';
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Loader from '../../Loader/Loader';
 import Error from '../../../views/Error/Error';
+import './BarChartDailyActivity.scss';
+
+// const getIntroOfPage = (label) => {
+//   return '';
+// };
 
 const BarChartDailyActivity = () => {
   const { userDataActivity, isLoading, error } = useContext(UserDataContext);
-  console.log('bar chart', userDataActivity.data.sessions);
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`${payload[0].value}`}kg</p>
+          {/* <p className="intro">{getIntroOfPage(label)}</p> */}
+          <p className="desc">{`${payload[1].value}`}Kcal</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   if (error) {
     return <Error />;
@@ -38,8 +56,17 @@ const BarChartDailyActivity = () => {
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis />
+
         <YAxis dataKey="calories" />
-        <Tooltip />
+        <Tooltip
+          content={<CustomTooltip />}
+          wrapperStyle={{
+            color: 'white',
+            backgroundColor: '#E60000',
+            paddingLeft: '10px',
+            paddingRight: '10px',
+          }}
+        />
         <Legend
           verticalAlign="top"
           height={70}

@@ -1,0 +1,12 @@
+.custom-tooltip {
+    height: 63px;
+    width: 39px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    & p {
+        text-align: center;
+    }
+}

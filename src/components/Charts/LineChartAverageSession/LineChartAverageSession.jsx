@@ -37,12 +37,15 @@ const LineChartAverageSession = () => {
           type="monotone"
           dataKey="sessionLength"
           stroke="#FFFFFF"
+          fill="#000000"
           dot={false}
-          activeDot={{ r: 8 }}
+          strokeWidth={2}
+          activeDot={{ r: 5 }}
         />
         <Tooltip
           wrapperStyle={{
             width: 30,
+            height: 30,
             backgroundColor: '#ccc',
             color: '#000000',
           }}
