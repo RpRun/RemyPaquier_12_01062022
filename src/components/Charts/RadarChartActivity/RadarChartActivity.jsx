@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import {
   PolarAngleAxis,
   PolarGrid,
-  PolarRadiusAxis,
   Radar,
   RadarChart,
   ResponsiveContainer,
@@ -12,11 +11,9 @@ import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 
 const RadarChartActivity = () => {
-  const { userDataPerformance, userData, isLoading, error } =
-    useContext(UserDataContext);
-  console.log('radar chart', userDataPerformance.data.data);
-  console.log('radar-chart KIND', userDataPerformance.data.kind);
-  console.log('radar-chart userData KIND', userData.data.kind);
+  const { userDataPerformance, isLoading, error } = useContext(UserDataContext);
+  // console.log('radar chart', userDataPerformance.data.data);
+  // console.log('radar-chart KIND', userDataPerformance.data.kind);
 
   if (error) {
     return <Error />;
@@ -33,8 +30,7 @@ const RadarChartActivity = () => {
         data={userDataPerformance.data.data}
       >
         <PolarGrid radialLines={false} />
-        <PolarAngleAxis />
-        <PolarRadiusAxis dataKey="kind" angle={60} domain={[0, 300]} />
+        <PolarAngleAxis dataKey={userDataPerformance.data.kind.value} />
         <Radar
           name="performances"
           dataKey="value"

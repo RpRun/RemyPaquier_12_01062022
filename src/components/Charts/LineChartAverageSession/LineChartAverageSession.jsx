@@ -7,11 +7,52 @@ import {
   ResponsiveContainer,
   Legend,
   Tooltip,
+  CartesianAxis,
 } from 'recharts';
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 import './LineChartAverageSession.scss';
+
+const getDayOfWeek = (label) => {
+  if (label === 1) {
+    return 'L';
+  }
+  if (label === 2) {
+    return 'M';
+  }
+  if (label === 3) {
+    return 'M';
+  }
+  if (label === 4) {
+    return 'J';
+  }
+  if (label === 5) {
+    return 'V';
+  }
+  if (label === 6) {
+    return 'S';
+  }
+  if (label === 7) {
+    return 'D';
+  }
+  return '';
+};
+
+const CustomLegendWithDays = ({ label }) => {
+  console.log('label legend day', label);
+
+  return (
+    <div className="custom-xAxis-Legend">
+      <p className="xAxis-Days-Legend">{getDayOfWeek(label)}</p>
+    </div>
+  );
+};
+
+// :any ? Typescript CustomLegendWithDays = ({active, payload, label}:any)
+// const CustomLegendWithDays = ({ label }) => {
+//   return <div className="custom-xAxis-Legend">{getDayOfWeek(label)}</div>;
+// };
 
 const LineChartAverageSession = () => {
   const { userDataAverage, isLoading, error } = useContext(UserDataContext);
@@ -51,8 +92,16 @@ const LineChartAverageSession = () => {
           }}
           color="#000000"
         />
-        <XAxis dataKey="day" />
-        <YAxis hide dataKey="sessionLength" />
+        <YAxis hide />
+        <XAxis
+          dataKey="day"
+          tickLine={false}
+          axisLine={false}
+          // content={<CustomLegendWithDays />}
+        />
+        {/* <CartesianAxis content={<CustomLegendWithDays />} /> */}
+        {/* <YAxis hide dataKey="sessionLength" /> */}
+        <Legend content="minutes" />
       </LineChart>
     </ResponsiveContainer>
   );

@@ -5,7 +5,7 @@ import Home from './views/Home/Home';
 import { pathByUser, userId } from './cfg';
 
 const Router = () => {
-  console.log('path', pathByUser);
+  // console.log('path', pathByUser);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
