@@ -115,16 +115,15 @@ const BarChartDailyActivity = () => {
           tickLine={true}
           axisLine={true}
           dataKey="calories"
-          allowDuplicatedCategory={false}
-          allowDataOverflow={true}
         />
 
         <Tooltip
           cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
           content={<CustomTooltip />}
-          // allowEscapeViewBox={{ x: true, y: true }}
+          position={{ y: -1 }}
+          // allowEscapeViewBox={{ x: true, y: false }}
           // coordinate={{ x: 100, y: 140 }}
-          position={{ y: -10 }}
+          // position={{ y: -10 }}
           wrapperStyle={{
             color: 'white',
             backgroundColor: '#E60000',
