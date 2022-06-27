@@ -101,6 +101,7 @@ const BarChartDailyActivity = () => {
           orientation="right"
           domain={[minWeight - 1, maxWeight + 1]}
           axisLine={false}
+          tickLine={false}
           dataKey="kilogram"
           allowDataOverflow={true}
           dx={20}
@@ -121,9 +122,6 @@ const BarChartDailyActivity = () => {
           cursor={{ fill: 'rgba(196, 196, 196, 0.5)' }}
           content={<CustomTooltip />}
           position={{ y: -1 }}
-          // allowEscapeViewBox={{ x: true, y: false }}
-          // coordinate={{ x: 100, y: 140 }}
-          // position={{ y: -10 }}
           wrapperStyle={{
             color: 'white',
             backgroundColor: '#E60000',

@@ -11,6 +11,7 @@ import KeyData from '../KeyData/KeyData';
 import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChartAverageSession';
 import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
+import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
 
 const Dashboard = () => {
   const { userData, isLoading } = useContext(UserDataContext);
@@ -48,7 +49,10 @@ const Dashboard = () => {
               <RadarChartActivity />
             </div>
 
-            <div className="square-chart--goal">score objectif</div>
+            <div className="square-chart--goal">
+              <PieChartGoal />
+              goaaaal
+            </div>
           </div>
         </div>
         <div className="nutrition-wrapper">

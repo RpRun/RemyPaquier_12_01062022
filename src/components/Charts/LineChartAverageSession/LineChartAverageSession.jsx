@@ -5,58 +5,41 @@ import {
   XAxis,
   YAxis,
   ResponsiveContainer,
-  Legend,
   Tooltip,
-  CartesianAxis,
 } from 'recharts';
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 import './LineChartAverageSession.scss';
 
-const getDayOfWeek = (label) => {
-  if (label === 1) {
-    return 'L';
-  }
-  if (label === 2) {
-    return 'M';
-  }
-  if (label === 3) {
-    return 'M';
-  }
-  if (label === 4) {
-    return 'J';
-  }
-  if (label === 5) {
-    return 'V';
-  }
-  if (label === 6) {
-    return 'S';
-  }
-  if (label === 7) {
-    return 'D';
-  }
-  return '';
-};
-
-const CustomLegendWithDays = ({ label }) => {
-  console.log('label legend day', label);
-
-  return (
-    <div className="custom-xAxis-Legend">
-      <p className="xAxis-Days-Legend">{getDayOfWeek(label)}</p>
-    </div>
-  );
-};
-
-// :any ? Typescript CustomLegendWithDays = ({active, payload, label}:any)
-// const CustomLegendWithDays = ({ label }) => {
-//   return <div className="custom-xAxis-Legend">{getDayOfWeek(label)}</div>;
-// };
-
 const LineChartAverageSession = () => {
   const { userDataAverage, isLoading, error } = useContext(UserDataContext);
-  console.log('line-chart average-sessions', userDataAverage.data.sessions);
+
+  const GetDayOfWeek = (index) => {
+    const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    return days[index - 1];
+  };
+
+  const formatedData = () => {
+    const sessions = userDataAverage.data.sessions;
+    return sessions.map((session) => {
+      return {
+        name: GetDayOfWeek(session.day),
+        session: session.sessionLength,
+      };
+    });
+  };
+
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="session-duration">{`${payload[0].value}`} min</p>
+        </div>
+      );
+    }
+    return null;
+  };
 
   if (error) {
     return <Error />;
@@ -72,36 +55,25 @@ const LineChartAverageSession = () => {
           left: 10,
           bottom: 10,
         }}
-        data={userDataAverage.data.sessions}
+        data={formatedData()}
       >
         <Line
           type="monotone"
-          dataKey="sessionLength"
-          stroke="#FFFFFF"
-          fill="#000000"
+          dataKey="session"
+          stroke="#000000"
           dot={false}
           strokeWidth={2}
           activeDot={{ r: 5 }}
         />
-        <Tooltip
-          wrapperStyle={{
-            width: 30,
-            height: 30,
-            backgroundColor: '#ccc',
-            color: '#000000',
-          }}
-          color="#000000"
-        />
+        <Tooltip content={<CustomTooltip />} />
         <YAxis hide />
+
         <XAxis
-          dataKey="day"
+          dataKey="name"
+          color="#000000"
           tickLine={false}
           axisLine={false}
-          // content={<CustomLegendWithDays />}
         />
-        {/* <CartesianAxis content={<CustomLegendWithDays />} /> */}
-        {/* <YAxis hide dataKey="sessionLength" /> */}
-        <Legend content="minutes" />
       </LineChart>
     </ResponsiveContainer>
   );
