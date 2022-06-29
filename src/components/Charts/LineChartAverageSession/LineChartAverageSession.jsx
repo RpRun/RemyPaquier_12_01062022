@@ -50,29 +50,55 @@ const LineChartAverageSession = () => {
     <ResponsiveContainer width="100%" height="100%">
       <LineChart
         margin={{
-          top: 50,
-          right: 10,
-          left: 10,
-          bottom: 10,
+          top: 80,
+          right: 0,
+          left: 0,
+          bottom: 5,
         }}
+        // padding={{ right: 30, left: 30 }}
+        strokeOpacity="50%"
         data={formatedData()}
+        onMouseMove={(e) => {
+          if (e.isTooltipActive === true) {
+            let div = document.querySelector('.square-chart--line');
+            let windowWidth = div.clientWidth;
+            let mouseXpercentage = Math.round(
+              (e.activeCoordinate.x / windowWidth) * 100
+            );
+
+            div.style.background = `linear-gradient(90deg, rgba(255,0,0,1) ${mouseXpercentage}%, rgba(175,0,0,1.5) ${mouseXpercentage}%, 	rgba(209, 1, 2,1) 100%)`;
+          }
+        }}
       >
         <Line
+          // strokeOpacity="50%"
+          allowDataOverflow={true}
+          width="100%"
           type="monotone"
           dataKey="session"
-          stroke="#000000"
+          stroke="#FFFFFF"
           dot={false}
           strokeWidth={2}
-          activeDot={{ r: 5 }}
+          activeDot={{
+            r: 5,
+            stroke: '#FFFFFF',
+            strokeWidth: 8,
+            strokeOpacity: 0.4,
+          }}
         />
         <Tooltip content={<CustomTooltip />} />
         <YAxis hide />
 
         <XAxis
+          allowDataOverflow={true}
+          // padding={{ left: 10, right: 10 }}
+          interval="preserveStartEnd"
           dataKey="name"
-          color="#000000"
+          stroke="#FFFFFF"
           tickLine={false}
           axisLine={false}
+
+          // strokeOpacity="50%"
         />
       </LineChart>
     </ResponsiveContainer>

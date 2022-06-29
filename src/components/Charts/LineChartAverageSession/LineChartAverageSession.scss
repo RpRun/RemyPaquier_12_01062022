@@ -9,3 +9,11 @@
     // width: 39px;
     // padding: 5px;
 }
+
+.square-chart--line .recharts-cartesian-axis-tick-value {
+    // text-anchor: start;
+    transform: scale(0.9);
+    transform-origin: bottom;
+    opacity: 50%;
+    font-size: 12px;
+}

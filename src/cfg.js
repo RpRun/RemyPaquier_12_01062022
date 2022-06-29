@@ -1,4 +1,4 @@
-const userId = 18
+const userId = 12
 const pathByUser = `/user/${userId}`
 const isMocked = false
 
