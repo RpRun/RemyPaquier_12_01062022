@@ -51,7 +51,7 @@ const Dashboard = () => {
 
             <div className="square-chart--goal">
               <PieChartGoal />
-              goaaaal
+              <h3>Score</h3>
             </div>
           </div>
         </div>

@@ -18,6 +18,8 @@ import './BarChartDailyActivity.scss';
 
 const BarChartDailyActivity = () => {
   const { userDataActivity, isLoading, error } = useContext(UserDataContext);
+  console.log(userDataActivity.data.sessions);
+  console.log('date', userDataActivity.data.sessions);
 
   const maxWeight = userDataActivity.data.sessions.reduce(
     (prev, current) => Math.max(prev, current.kilogram),
@@ -49,15 +51,6 @@ const BarChartDailyActivity = () => {
         </div>
       );
     }
-    // const dateDomain = userDataActivity.data.sessions.reduce(
-    //   (prev, current) => Math.max(prev, current.day),
-    //   0
-    // );
-    // console.log('date', dateDomain);
-    // const CustomAxisX = () => {
-    //   userDataActivity.data.sessions.day.map((date, index) =>
-    //   )
-    // }
 
     return null;
   };
@@ -86,7 +79,9 @@ const BarChartDailyActivity = () => {
           stroke="#9B9EAC"
           tickLine={false}
           dy={15.5}
-          dataKey="day"
+          // dataKey="day"
+          // dataKey="day"
+
           // content={<CustomAxisX />}
           // dataKey={userDataActivity.data.sessions}
         />
@@ -131,7 +126,6 @@ const BarChartDailyActivity = () => {
           onHover={{ fill: '#C4C4C4' }}
         />
         <Legend
-          fill="#E60000"
           iconType="circle"
           verticalAlign="top"
           height={70}

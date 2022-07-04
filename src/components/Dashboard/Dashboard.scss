@@ -104,6 +104,16 @@
 .square-chart--goal {
     background-color: #FBFBFB;
     color: #282D30;
+    position: relative;
+
+    & h3 {
+        Font-size: 15px;
+        Line-height: 24px;
+        color: #20253A;
+        top: 30px;
+        left: 24px;
+        position: absolute;
+    }
 }
 
 .nutrition-wrapper {

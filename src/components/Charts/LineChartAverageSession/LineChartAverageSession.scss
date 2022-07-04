@@ -2,16 +2,9 @@
     background-color: #FFFFFF;
     height: 25px;
     color: #000000;
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // height: 10px;
-    // width: 39px;
-    // padding: 5px;
 }
 
 .square-chart--line .recharts-cartesian-axis-tick-value {
-    // text-anchor: start;
     transform: scale(0.9);
     transform-origin: bottom;
     opacity: 50%;

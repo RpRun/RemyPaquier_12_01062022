@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import {
   Legend,
-  Pie,
-  PieChart,
+  PolarAngleAxis,
   RadialBar,
   RadialBarChart,
   ResponsiveContainer,
@@ -10,11 +9,20 @@ import {
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
+import './PieChartGoal.scss';
 
 const PieChartGoal = () => {
   const { userData, isLoading, error } = useContext(UserDataContext);
-  console.log('data pie', userData.data.score);
-
+  // console.log('data pie', userData.data.score.value);
+  const score = userData.data.todayScore
+    ? userData.data.todayScore * 100
+    : userData.data.score * 100;
+  const todayScore = [
+    {
+      name: `${score}% de votre objectif`,
+      value: score,
+    },
+  ];
   if (error) {
     return <Error />;
   }
@@ -25,29 +33,28 @@ const PieChartGoal = () => {
       <RadialBarChart
         cx="50%"
         cy="50%"
-        innerRadius="10%"
-        outerRadius="80%"
+        startAngle={180}
+        endAngle={-180}
+        innerRadius={85}
+        outerRadius={100}
         barSize={10}
-        data={userData.data}
-        fill="blue"
+        data={todayScore}
       >
-        <RadialBar
-          minAngle={15}
-          //   label={{ position: 'insideStart', fill: '#E60000' }}
-          //   background
-          clockWise
-          dataKey="score"
-          fill="blue"
-          stroke="black"
+        <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+
+        <RadialBar minAngle={0} fill="red" cornerRadius="50%" dataKey="value" />
+        <Legend
+          wrapperStyle={{
+            backgroundColor: 'white',
+            borderRadius: '50%',
+            height: '159px',
+            width: '159px',
+            transformOrigin: '0px 0px',
+          }}
+          iconSize={0}
+          layout="vertical"
+          verticalAlign="middle"
         />
-        <RadialBar
-          minAngle={60}
-          label={{ position: 'insideStart', fill: '#020203' }}
-          //   background
-          //   clockWise
-          //   dataKey={100}
-        />
-        <Legend iconSize={10} layout="vertical" verticalAlign="middle" />
       </RadialBarChart>
     </ResponsiveContainer>
   );

@@ -55,7 +55,6 @@ const LineChartAverageSession = () => {
           left: 0,
           bottom: 5,
         }}
-        // padding={{ right: 30, left: 30 }}
         strokeOpacity="50%"
         data={formatedData()}
         onMouseMove={(e) => {
@@ -71,10 +70,8 @@ const LineChartAverageSession = () => {
         }}
       >
         <Line
-          // strokeOpacity="50%"
-          allowDataOverflow={true}
           width="100%"
-          type="monotone"
+          type="natural"
           dataKey="session"
           stroke="#FFFFFF"
           dot={false}
@@ -91,14 +88,11 @@ const LineChartAverageSession = () => {
 
         <XAxis
           allowDataOverflow={true}
-          // padding={{ left: 10, right: 10 }}
           interval="preserveStartEnd"
           dataKey="name"
           stroke="#FFFFFF"
           tickLine={false}
           axisLine={false}
-
-          // strokeOpacity="50%"
         />
       </LineChart>
     </ResponsiveContainer>
