@@ -8,7 +8,7 @@ import {
 // each Axios request method.
 
 export default axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3001",
     // baseURL2: `http://localhost:3000/user/${userId}/average-sessions`,
 
 })

@@ -7,6 +7,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import UserDataContext from '../../../utils/context/UserDataContext';
+import frTrad from '../../../utils/frTrad';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 
@@ -16,25 +17,9 @@ const RadarChartActivity = () => {
   console.log('radar-chart KIND', [userDataPerformance.data.kind]);
 
   const GetActivityKind = (index) => {
-    const capitalizeFirstLetter = (arr) => {
-      return arr.map((element) => {
-        return (
-          element.charAt(0).toUpperCase() + element.substring(1).toLowerCase()
-        );
-      });
-    };
-    const kind = [
-      'cardio',
-      'energy',
-      'endurance',
-      'strength',
-      'speed',
-      'intensity',
-    ];
+    const activityKind = userDataPerformance.data.kind;
 
-    kind.reverse();
-
-    return kind[index - 1];
+    return frTrad[activityKind[index]];
   };
 
   const formatedData = () => {
@@ -60,7 +45,7 @@ const RadarChartActivity = () => {
         cy="50%"
         outerRadius="65%"
         fontSize="12px"
-        data={formatedData()}
+        data={formatedData().reverse()}
       >
         <PolarGrid radialLines={false} />
         <PolarAngleAxis dataKey="name" />
