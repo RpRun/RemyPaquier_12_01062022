@@ -10,9 +10,13 @@
 
 
 .square-chart--goal .recharts-default-legend {
-    text-align: center;
     height: 100%;
     display: flex;
     align-items: center;
 
+}
+
+.square-chart--goal .recharts-legend-item {
+    text-align: center;
+    color: #74798C;
 }

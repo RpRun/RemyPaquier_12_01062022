@@ -12,7 +12,7 @@ import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChart
 import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
-
+// import PropTypes from 'prop-types';
 const Dashboard = () => {
   const { userData, isLoading } = useContext(UserDataContext);
   const error = !isLoading && !userData && userData.length === 0;
@@ -85,5 +85,10 @@ const Dashboard = () => {
     </main>
   );
 };
+// KeyData.propTypes = {
+//   picture: PropTypes.number.isRequired,
+//   number: PropTypes.string,
+//   type: PropTypes.string,
+// };
 
 export default Dashboard;

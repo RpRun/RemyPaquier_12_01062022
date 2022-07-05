@@ -1,18 +1,6 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import './KeyData.scss';
-import UserDataContext from '../../utils/context/UserDataContext';
-import Error from '../../views/Error/Error';
-import Loader from '../Loader/Loader';
-const KeyData = ({ picture, number, unit, type }) => {
-  // const { userData, isLoading, error } = useContext(UserDataContext);
 
-  // if (error) {
-  //   return <Error />;
-  // }
-  // return isLoading ? (
-  //   <Loader />
-  // ) :
+const KeyData = ({ picture, number, unit, type }) => {
   return (
     <div className="key-data">
       <img src={picture} alt="" />
@@ -26,11 +14,5 @@ const KeyData = ({ picture, number, unit, type }) => {
     </div>
   );
 };
-
-// KeyDataListItem.propTypes = {
-//   picture: PropTypes.string,
-//   number: PropTypes.string,
-//   type: PropTypes.string,
-// };
 
 export default KeyData;
