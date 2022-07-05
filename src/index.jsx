@@ -9,11 +9,11 @@ import { UserDataProvider } from './utils/context/UserDataContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserDataProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <UserDataProvider>
         <App />
-      </BrowserRouter>
-    </UserDataProvider>
+      </UserDataProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
