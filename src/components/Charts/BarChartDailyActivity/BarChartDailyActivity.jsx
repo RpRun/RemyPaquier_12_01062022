@@ -7,7 +7,6 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  CartesianAxis,
 } from 'recharts';
 
 import React, { useContext } from 'react';
