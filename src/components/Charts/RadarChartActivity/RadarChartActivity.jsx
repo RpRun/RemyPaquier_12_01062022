@@ -13,8 +13,6 @@ import Loader from '../../Loader/Loader';
 
 const RadarChartActivity = () => {
   const { userDataPerformance, isLoading, error } = useContext(UserDataContext);
-  console.log('radar chart', userDataPerformance.data.data);
-  console.log('radar-chart KIND', [userDataPerformance.data.kind]);
 
   const GetActivityKind = (index) => {
     const activityKind = userDataPerformance.data.kind;

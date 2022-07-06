@@ -12,9 +12,11 @@ import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChart
 import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
+// import USER_MAIN_DATA from '../../data/mockedData';
 // import PropTypes from 'prop-types';
 const Dashboard = () => {
   const { userData, isLoading } = useContext(UserDataContext);
+  // console.log('userData ID', userData.data.id);
   const error = !isLoading && !userData && userData.length === 0;
   if (error) {
     return <Error />;
@@ -58,7 +60,7 @@ const Dashboard = () => {
         <div className="nutrition-wrapper">
           <KeyData
             picture={Burn}
-            number={userData.data.keyData.calorieCount}
+            number={userData.data.keyData.calorieCount.toLocaleString('en-US')}
             unit={'kCal'}
             type={'Calories'}
           />

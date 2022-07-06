@@ -17,8 +17,7 @@ import './BarChartDailyActivity.scss';
 
 const BarChartDailyActivity = () => {
   const { userDataActivity, isLoading, error } = useContext(UserDataContext);
-  console.log(userDataActivity.data.sessions);
-  console.log('date', userDataActivity.data.sessions);
+  // console.log('date', userDataActivity.data.sessions);
 
   const maxWeight = userDataActivity.data.sessions.reduce(
     (prev, current) => Math.max(prev, current.kilogram),

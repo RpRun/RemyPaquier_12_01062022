@@ -34,9 +34,12 @@ const useAxios = () => {
       setUserDataActivity(responseActivity.data);
       setUserDataAverage(responseAverage.data);
       setUserDataPerformance(responsePerformance.data);
-
-      // console.log('fetched API data PERFORMANCE', responsePerformance.data);
-
+      console.log('fetched API data PERFORMANCE', {
+        response,
+        responseActivity,
+        responseAverage,
+        responsePerformance,
+      });
       setIsLoading(false);
     } catch (err) {
       setError(true);
@@ -51,6 +54,14 @@ const useAxios = () => {
     console.log('fetch mocked data', mockedData);
     setUserData(mockedData);
     setIsLoading(false);
+    // const response = await sportSeeAPI.get(API_SRC);
+    //   const responseActivity = await sportSeeAPI.get(API_SRC_ACTIVITY);
+    //   const responseAverage = await sportSeeAPI.get(API_SRC_AVERAGE);
+    //   const responsePerformance = await sportSeeAPI.get(API_SRC_PERFORMANCE);
+    //   setUserData(response.data);
+    //   setUserDataActivity(responseActivity.data);
+    //   setUserDataAverage(responseAverage.data);
+    //   setUserDataPerformance(responsePerformance.data);
   };
 
   // custom hook returns value
