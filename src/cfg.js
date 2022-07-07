@@ -1,9 +1,9 @@
 const userId = 12
 const pathByUser = `/user/${userId}`
-const isMocked = false
+// const isMocked = false
 
 export {
     userId,
     pathByUser,
-    isMocked
+    // isMocked
 };

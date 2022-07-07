@@ -10,9 +10,7 @@ import { UserDataProvider } from './utils/context/UserDataContext';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserDataProvider>
-        <App />
-      </UserDataProvider>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

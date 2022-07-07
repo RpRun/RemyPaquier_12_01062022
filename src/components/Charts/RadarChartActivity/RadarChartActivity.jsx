@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -6,13 +7,53 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from 'recharts';
-import UserDataContext from '../../../utils/context/UserDataContext';
+import sportSeeAPI from '../../../api/sportSeeAPI';
+// import UserDataContext from '../../../utils/context/UserDataContext';
 import frTrad from '../../../utils/frTrad';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 
 const RadarChartActivity = () => {
-  const { userDataPerformance, isLoading, error } = useContext(UserDataContext);
+  const id = useParams();
+
+  const GetDataPerformance = () => {
+    const [userDataPerformance, setUserDataPerformance] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      const userId = id.userId;
+      //react axios get method
+      const fetchUserData = async () => {
+        try {
+          const responsePerformance = await sportSeeAPI.get(
+            `/user/${userId}/performance`
+          );
+
+          setUserDataPerformance(responsePerformance.data);
+
+          console.log('fetch async data PERF', responsePerformance.data);
+
+          setIsLoading(false);
+        } catch (err) {
+          setError(true);
+          console.log(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      fetchUserData();
+    }, []);
+
+    return {
+      userDataPerformance,
+      isLoading,
+      error,
+    };
+  };
+
+  const { userDataPerformance, isLoading, error } = GetDataPerformance();
 
   const GetActivityKind = (index) => {
     const activityKind = userDataPerformance.data.kind;

@@ -9,15 +9,54 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import UserDataContext from '../../../utils/context/UserDataContext';
 import Loader from '../../Loader/Loader';
 import Error from '../../../views/Error/Error';
 import './BarChartDailyActivity.scss';
+import sportSeeAPI from '../../../api/sportSeeAPI';
+import { useParams } from 'react-router-dom';
 
 const BarChartDailyActivity = () => {
-  const { userDataActivity, isLoading, error } = useContext(UserDataContext);
-  // console.log('date', userDataActivity.data.sessions);
+  const id = useParams();
+  const userId = id.userId;
+  const GetDataActivity = () => {
+    const [userDataActivity, setUserDataActivity] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      //react axios get method
+      const fetchUserData = async () => {
+        try {
+          const responseActivity = await sportSeeAPI.get(
+            `/user/${userId}/activity`
+          );
+
+          setUserDataActivity(responseActivity.data);
+
+          console.log('fetch async data Activity', responseActivity.data);
+
+          setIsLoading(false);
+        } catch (err) {
+          setError(true);
+          console.log(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+
+      fetchUserData();
+    }, []);
+
+    return {
+      userDataActivity,
+      isLoading,
+      error,
+    };
+  };
+
+  const { userDataActivity, isLoading, error } = GetDataActivity();
 
   const maxWeight = userDataActivity.data.sessions.reduce(
     (prev, current) => Math.max(prev, current.kilogram),

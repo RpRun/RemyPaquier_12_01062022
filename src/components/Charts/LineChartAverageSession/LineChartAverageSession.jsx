@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   LineChart,
   Line,
@@ -7,13 +8,56 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
-import UserDataContext from '../../../utils/context/UserDataContext';
+import sportSeeAPI from '../../../api/sportSeeAPI';
+// import UserDataContext from '../../../utils/context/UserDataContext';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 import './LineChartAverageSession.scss';
 
 const LineChartAverageSession = () => {
-  const { userDataAverage, isLoading, error } = useContext(UserDataContext);
+  const id = useParams();
+  const userId = id.userId;
+  const GetDataAverage = () => {
+    const [userDataAverage, setUserDataAverage] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      // const userId = id.userId;
+      //react axios get method
+      const fetchUserData = async () => {
+        try {
+          // const response = await sportSeeAPI.get('/user/:userId');
+          const responseAverage = await sportSeeAPI.get(
+            `/user/${userId}/average-session`
+          );
+          // setUserData(response.data);
+
+          // console.log('fetch async data', response.data);
+          setUserDataAverage(responseAverage.data);
+
+          console.log('fetch async data Average', responseAverage.data);
+
+          setIsLoading(false);
+        } catch (err) {
+          setError(true);
+          console.log(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      // console.log('userId', id.userId);
+      fetchUserData();
+    }, []);
+
+    return {
+      userDataAverage,
+      isLoading,
+      error,
+    };
+  };
+
+  const { userDataAverage, isLoading, error } = GetDataAverage();
 
   const GetDayOfWeek = (index) => {
     const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import UserDataContext from '../../utils/context/UserDataContext';
 import Error from '../../views/Error/Error';
 import Loader from '../Loader/Loader';
@@ -13,18 +13,56 @@ import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity'
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
 import { useLocation, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import sportSeeAPI from '../../api/sportSeeAPI';
 // import USER_MAIN_DATA from '../../data/mockedData';
 // import PropTypes from 'prop-types';
 const Dashboard = () => {
-  const param = useParams();
+  const id = useParams();
+  const userId = id.userId;
+  console.log('userId', id);
+  console.log('params id', id.userId);
+  // const location = useLocation();
+  // console.log('locATION', location);
 
-  console.log('userId', param);
-  const location = useLocation();
-  console.log('locATION', location);
-  const { userData, isLoading } = useContext(UserDataContext);
+  const GetMainData = () => {
+    const [userData, setUserData] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      //react axios get method
+      const fetchUserData = async () => {
+        try {
+          const response = await sportSeeAPI.get(`/user/${userId}`);
+
+          setUserData(response.data);
+
+          console.log('fetch async MAIN data', response.data);
+
+          setIsLoading(false);
+        } catch (err) {
+          setError(true);
+          console.log(err.message);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchUserData();
+    }, []);
+
+    return {
+      userData,
+      isLoading,
+      error,
+    };
+  };
+
+  const { userData, isLoading, error } = GetMainData();
+
   // if (id === userID)
-  console.log('userData ID', userData.data.id);
-  const error = !isLoading && !userData && userData.length === 0;
+  // console.log('userData ID', userData.data.id);
+  // const error = !isLoading && !userData && userData.length === 0;
   if (error) {
     return <Error />;
   }

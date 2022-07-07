@@ -1,7 +1,7 @@
 import React from 'react';
 import Aside from '../../components/Aside/Aside';
 import DashBoard from '../../components/Dashboard/Dashboard';
-import useAxios from '../../utils/hooks';
+// import useAxios from '../../utils/hooks';
 
 const Profile = () => {
   // USE aXUIOS SI USER ID SINON ERROR
