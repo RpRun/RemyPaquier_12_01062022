@@ -12,11 +12,18 @@ import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChart
 import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
+import { useLocation, useParams } from 'react-router-dom';
 // import USER_MAIN_DATA from '../../data/mockedData';
 // import PropTypes from 'prop-types';
 const Dashboard = () => {
+  const param = useParams();
+
+  console.log('userId', param);
+  const location = useLocation();
+  console.log('locATION', location);
   const { userData, isLoading } = useContext(UserDataContext);
-  // console.log('userData ID', userData.data.id);
+  // if (id === userID)
+  console.log('userData ID', userData.data.id);
   const error = !isLoading && !userData && userData.length === 0;
   if (error) {
     return <Error />;

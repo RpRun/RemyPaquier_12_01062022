@@ -12,7 +12,7 @@ const TopMenu = () => {
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to={pathByUser}>
+          <Link className="top-nav--link" to={pathByUser + '/profile'}>
             Profil
           </Link>
         </li>

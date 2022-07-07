@@ -10,7 +10,8 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       {/* <Route path={pathByUser} element={<Profile />} /> */}
-      <Route path={`/user/${userId}`} element={<Profile />} />
+      {/* <Route path={`/user/${userId}`} element={<Profile />} /> */}
+      <Route path="/user/:userId/profile" element={<Profile />} />
       <Route path="*" element={<Navigate replace to="/error-page" />} />
       <Route path="/error-page" element={<Error />} />
     </Routes>
