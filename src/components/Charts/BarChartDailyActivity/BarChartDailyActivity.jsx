@@ -9,54 +9,51 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-import React, { useContext, useEffect, useState } from 'react';
-import UserDataContext from '../../../utils/context/UserDataContext';
 import Loader from '../../Loader/Loader';
 import Error from '../../../views/Error/Error';
 import './BarChartDailyActivity.scss';
-import sportSeeAPI from '../../../api/sportSeeAPI';
-import { useParams } from 'react-router-dom';
 
-const BarChartDailyActivity = () => {
-  const id = useParams();
-  const userId = id.userId;
-  const GetDataActivity = () => {
-    const [userDataActivity, setUserDataActivity] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+const BarChartDailyActivity = ({ userDataActivity, isLoading, error }) => {
+  // const id = useParams();
 
-    useEffect(() => {
-      //react axios get method
-      const fetchUserData = async () => {
-        try {
-          const responseActivity = await sportSeeAPI.get(
-            `/user/${userId}/activity`
-          );
+  // const GetDataActivity = () => {
+  //   const [userDataActivity, setUserDataActivity] = useState('');
+  //   const [isLoading, setIsLoading] = useState(true);
+  //   const [error, setError] = useState(false);
 
-          setUserDataActivity(responseActivity.data);
+  //   useEffect(() => {
+  //     const userId = id.userId;
+  //     //react axios get method
+  //     const fetchUserData = async () => {
+  //       try {
+  //         const responseActivity = await sportSeeAPI.get(
+  //           `/user/${userId}/activity`
+  //         );
 
-          console.log('fetch async data Activity', responseActivity.data);
+  //         setUserDataActivity(responseActivity.data);
 
-          setIsLoading(false);
-        } catch (err) {
-          setError(true);
-          console.log(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+  //         console.log('fetch async data Activity', responseActivity.data);
 
-      fetchUserData();
-    }, []);
+  //         setIsLoading(false);
+  //       } catch (err) {
+  //         setError(true);
+  //         console.log(err.message);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //     };
 
-    return {
-      userDataActivity,
-      isLoading,
-      error,
-    };
-  };
+  //     fetchUserData();
+  //   }, []);
 
-  const { userDataActivity, isLoading, error } = GetDataActivity();
+  //   return {
+  //     userDataActivity,
+  //     isLoading,
+  //     error,
+  //   };
+  // };
+
+  // const { userDataActivity, isLoading, error } = GetDataActivity();
 
   const maxWeight = userDataActivity.data.sessions.reduce(
     (prev, current) => Math.max(prev, current.kilogram),
@@ -78,12 +75,11 @@ const BarChartDailyActivity = () => {
 
   const weightDomain = maxWeight - minWeight + 1;
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="kilos">{`${payload[0].value}`}kg</p>
-          {/* <p className="intro">{getIntroOfPage(label)}</p> */}
           <p className="calories">{`${payload[1].value}`}Kcal</p>
         </div>
       );
@@ -112,18 +108,7 @@ const BarChartDailyActivity = () => {
         data={userDataActivity.data.sessions}
       >
         <CartesianGrid strokeDasharray="3 3" vertical={false} />
-        <XAxis
-          stroke="#9B9EAC"
-          tickLine={false}
-          dy={15.5}
-          // dataKey="day"
-          // dataKey="day"
-
-          // content={<CustomAxisX />}
-          // dataKey={userDataActivity.data.sessions}
-        />
-
-        {/* <YAxis content={<CustomWeightAxis />} /> */}
+        <XAxis stroke="#9B9EAC" tickLine={false} dy={15.5} />
 
         <YAxis
           yAxisId="right"
@@ -176,7 +161,6 @@ const BarChartDailyActivity = () => {
           fill="#282D30"
           radius={[3, 3, 0, 0]}
           barSize={7}
-          // background={{ fill: '#C4C4C4' }}
         />
         <Bar
           yAxisId="left"

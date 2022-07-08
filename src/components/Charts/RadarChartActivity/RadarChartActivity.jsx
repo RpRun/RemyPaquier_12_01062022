@@ -13,47 +13,47 @@ import frTrad from '../../../utils/frTrad';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 
-const RadarChartActivity = () => {
-  const id = useParams();
+const RadarChartActivity = ({ userDataPerformance, isLoading, error }) => {
+  // const id = useParams();
 
-  const GetDataPerformance = () => {
-    const [userDataPerformance, setUserDataPerformance] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+  // const GetDataPerformance = () => {
+  //   const [userDataPerformance, setUserDataPerformance] = useState('');
+  //   const [isLoading, setIsLoading] = useState(true);
+  //   const [error, setError] = useState(false);
 
-    useEffect(() => {
-      const userId = id.userId;
-      //react axios get method
-      const fetchUserData = async () => {
-        try {
-          const responsePerformance = await sportSeeAPI.get(
-            `/user/${userId}/performance`
-          );
+  //   useEffect(() => {
+  //     const userId = id.userId;
+  //     //react axios get method
+  //     const fetchUserData = async () => {
+  //       try {
+  //         const responsePerformance = await sportSeeAPI.get(
+  //           `/user/${userId}/performance`
+  //         );
 
-          setUserDataPerformance(responsePerformance.data);
+  //         setUserDataPerformance(responsePerformance.data);
 
-          console.log('fetch async data PERF', responsePerformance.data);
+  //         console.log('fetch async data PERF', responsePerformance.data);
 
-          setIsLoading(false);
-        } catch (err) {
-          setError(true);
-          console.log(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
+  //         setIsLoading(false);
+  //       } catch (err) {
+  //         setError(true);
+  //         console.log(err.message);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //     };
 
-      fetchUserData();
-    }, []);
+  //     fetchUserData();
+  //   }, []);
 
-    return {
-      userDataPerformance,
-      isLoading,
-      error,
-    };
-  };
+  //   return {
+  //     userDataPerformance,
+  //     isLoading,
+  //     error,
+  //   };
+  // };
 
-  const { userDataPerformance, isLoading, error } = GetDataPerformance();
+  // const { userDataPerformance, isLoading, error } = GetDataPerformance();
 
   const GetActivityKind = (index) => {
     const activityKind = userDataPerformance.data.kind;

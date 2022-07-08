@@ -13,44 +13,44 @@ import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';
 import './PieChartGoal.scss';
 
-const PieChartGoal = () => {
-  const id = useParams();
-  const userId = id.userId;
-  const GetMainData = () => {
-    const [userData, setUserData] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+const PieChartGoal = ({ userData, isLoading, error }) => {
+  // const id = useParams();
+  // const userId = id.userId;
+  // const GetMainData = () => {
+  //   const [userData, setUserData] = useState('');
+  //   const [isLoading, setIsLoading] = useState(true);
+  //   const [error, setError] = useState(false);
 
-    useEffect(() => {
-      //react axios get method
-      const fetchUserData = async () => {
-        try {
-          const response = await sportSeeAPI.get(`/user/${userId}/`);
+  //   useEffect(() => {
+  //     //react axios get method
+  //     const fetchUserData = async () => {
+  //       try {
+  //         const response = await sportSeeAPI.get(`/user/${userId}/`);
 
-          setUserData(response.data);
+  //         setUserData(response.data);
 
-          console.log('fetch async AVERAGE data', response.data);
+  //         console.log('fetch async AVERAGE data', response.data);
 
-          setIsLoading(false);
-        } catch (err) {
-          setError(true);
-          console.log(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      // console.log('userId', id.userId);
-      fetchUserData();
-    }, []);
+  //         setIsLoading(false);
+  //       } catch (err) {
+  //         setError(true);
+  //         console.log(err.message);
+  //       } finally {
+  //         setIsLoading(false);
+  //       }
+  //     };
+  //     // console.log('userId', id.userId);
+  //     fetchUserData();
+  //   }, []);
 
-    return {
-      userData,
-      isLoading,
-      error,
-    };
-  };
+  //   return {
+  //     userData,
+  //     isLoading,
+  //     error,
+  //   };
+  // };
 
-  const { userData, isLoading, error } = GetMainData();
+  // const { userData, isLoading, error } = GetMainData();
 
   // console.log('data pie', userData.data.score.value);
   const score = userData.data.todayScore

@@ -25,40 +25,59 @@ const Dashboard = () => {
   // const location = useLocation();
   // console.log('locATION', location);
 
-  const GetMainData = () => {
-    const [userData, setUserData] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(false);
+  const [userData, setUserData] = useState('');
 
-    useEffect(() => {
-      //react axios get method
-      const fetchUserData = async () => {
-        try {
-          const response = await sportSeeAPI.get(`/user/${userId}`);
+  const [userDataActivity, setUserDataActivity] = useState('');
+  const [userDataAverage, setUserDataAverage] = useState('');
+  const [userDataPerformance, setUserDataPerformance] = useState('');
 
-          setUserData(response.data);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-          console.log('fetch async MAIN data', response.data);
+  const fetchUserData = async () => {
+    try {
+      const response = await sportSeeAPI.get(`/user/${userId}`);
 
-          setIsLoading(false);
-        } catch (err) {
-          setError(true);
-          console.log(err.message);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      fetchUserData();
-    }, []);
+      const responseActivity = await sportSeeAPI.get(
+        `/user/${userId}/activity`
+      );
 
+      const responseAverage = await sportSeeAPI.get(
+        `/user/${userId}/average-sessions`
+      );
+      const responsePerformance = await sportSeeAPI.get(
+        `/user/${userId}/performance`
+      );
+
+      setUserData(response.data);
+
+      setUserDataActivity(responseActivity.data);
+      setUserDataAverage(responseAverage.data);
+      setUserDataPerformance(responsePerformance.data);
+
+      console.log('fetch async MAIN data', response.data);
+
+      setIsLoading(false);
+    } catch (err) {
+      setError(true);
+      console.log(err.message);
+    } finally {
+      setIsLoading(false);
+    }
     return {
       userData,
+      userDataActivity,
+      userDataAverage,
+      userDataPerformance,
       isLoading,
       error,
     };
   };
+  useEffect(() => {
+    //react axios get method
 
-  const { userData, isLoading, error } = GetMainData();
+    fetchUserData();
+  }, []);
 
   // if (id === userID)
   // console.log('userData ID', userData.data.id);
@@ -83,21 +102,24 @@ const Dashboard = () => {
         <div className="charts-wrapper">
           <div className="daily-activity">
             <h3>Activité quotidienne</h3>
-            <BarChartDailyActivity />
+            {/* <BarChartDailyActivity {...{ userDataActivity }} /> */}
+            <BarChartDailyActivity {...{ userDataActivity }} />
           </div>
           <div className="squares-charts-container">
             <div className="square-chart--line">
               <h3>
                 Durée moyenne des <br /> sessions
               </h3>
-              <LineChartAverageSession />
+              <LineChartAverageSession {...{ userDataAverage }} />
             </div>
             <div className="square-chart--radar">
-              <RadarChartActivity />
+              <RadarChartActivity
+                {...{ userDataPerformance, isLoading, error }}
+              />
             </div>
 
             <div className="square-chart--goal">
-              <PieChartGoal />
+              <PieChartGoal {...{ userData }} />
               <h3>Score</h3>
             </div>
           </div>
