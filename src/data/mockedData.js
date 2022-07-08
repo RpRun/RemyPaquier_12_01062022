@@ -1,26 +1,26 @@
 const USER_MAIN_DATA = [{
-    id: 12,
+    id: 13,
     userInfos: {
-      firstName: 'Karl',
+      firstName: 'Raoul',
       lastName: 'Dovineau',
       age: 31,
     },
-    todayScore: 0.12,
+    todayScore: 0.80,
     keyData: {
-      calorieCount: 1930,
-      proteinCount: 155,
-      carbohydrateCount: 290,
-      lipidCount: 50
+      calorieCount: 4000,
+      proteinCount: 600,
+      carbohydrateCount: 40,
+      lipidCount: 5000
     }
   },
   {
-    id: 18,
+    id: 14,
     userInfos: {
-      firstName: 'Cecilia',
-      lastName: 'Ratorez',
+      firstName: 'Laura',
+      lastName: 'Connor',
       age: 34,
     },
-    score: 0.3,
+    score: 0.99,
     keyData: {
       calorieCount: 2500,
       proteinCount: 90,
@@ -31,7 +31,7 @@ const USER_MAIN_DATA = [{
 ]
 
 const USER_ACTIVITY = [{
-    userId: 12,
+    userId: 13,
     sessions: [{
         day: '2020-07-01',
         kilogram: 80,
@@ -70,7 +70,7 @@ const USER_ACTIVITY = [{
     ]
   },
   {
-    userId: 18,
+    userId: 14,
     sessions: [{
         day: '2020-07-01',
         kilogram: 70,
@@ -112,7 +112,7 @@ const USER_ACTIVITY = [{
 
 
 const USER_AVERAGE_SESSIONS = [{
-    userId: 12,
+    userId: 13,
     sessions: [{
         day: 1,
         sessionLength: 30
@@ -144,7 +144,7 @@ const USER_AVERAGE_SESSIONS = [{
     ]
   },
   {
-    userId: 18,
+    userId: 14,
     sessions: [{
         day: 1,
         sessionLength: 30
@@ -179,7 +179,7 @@ const USER_AVERAGE_SESSIONS = [{
 
 
 const USER_PERFORMANCE = [{
-    userId: 12,
+    userId: 13,
     kind: {
       1: 'cardio',
       2: 'energy',
@@ -215,7 +215,7 @@ const USER_PERFORMANCE = [{
     ]
   },
   {
-    userId: 18,
+    userId: 14,
     kind: {
       1: 'cardio',
       2: 'energy',
@@ -233,11 +233,11 @@ const USER_PERFORMANCE = [{
         kind: 2
       },
       {
-        value: 80,
+        value: 200,
         kind: 3
       },
       {
-        value: 80,
+        value: 200,
         kind: 4
       },
       {
@@ -245,7 +245,7 @@ const USER_PERFORMANCE = [{
         kind: 5
       },
       {
-        value: 110,
+        value: 180,
         kind: 6
       }
     ]

@@ -13,7 +13,15 @@ import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity'
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
 
+import mockedData from '../../data/mockedData';
 import sportSeeAPI from '../../api/sportSeeAPI';
+
+import {
+  USER_MAIN_DATA,
+  USER_ACTIVITY,
+  USER_AVERAGE_SESSIONS,
+  USER_PERFORMANCE,
+} from '../../data/mockedData';
 
 const Dashboard = () => {
   const { id } = useParams();
@@ -59,9 +67,24 @@ const Dashboard = () => {
       error,
     };
   };
+
   useEffect(() => {
+    console.log('fetchUserData()');
     fetchUserData();
   }, []);
+  // mockedData.userData.id.toString() ===
+  // if (id) {
+
+  // }
+  const mockedUserData = () =>
+    USER_MAIN_DATA.forEach((user) =>
+      console.log('user mocké héhé', user.userInfos.firstName)
+    );
+  mockedUserData();
+
+  // const fetchMockedData = () => {
+  //   if (id === USER_MAIN_DATA.data.id)
+  // }
 
   // const error = !isLoading && !userData && userData.length === 0;
   if (error) {
@@ -135,10 +158,11 @@ const Dashboard = () => {
     </main>
   );
 };
+
+export default Dashboard;
+
 // KeyData.propTypes = {
 //   picture: PropTypes.number.isRequired,
 //   number: PropTypes.string,
 //   type: PropTypes.string,
 // };
-
-export default Dashboard;
