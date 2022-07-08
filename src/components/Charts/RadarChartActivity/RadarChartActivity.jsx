@@ -1,5 +1,3 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -7,8 +5,6 @@ import {
   RadarChart,
   ResponsiveContainer,
 } from 'recharts';
-import sportSeeAPI from '../../../api/sportSeeAPI';
-// import UserDataContext from '../../../utils/context/UserDataContext';
 import frTrad from '../../../utils/frTrad';
 import Error from '../../../views/Error/Error';
 import Loader from '../../Loader/Loader';

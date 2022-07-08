@@ -14,47 +14,6 @@ import Error from '../../../views/Error/Error';
 import './BarChartDailyActivity.scss';
 
 const BarChartDailyActivity = ({ userDataActivity, isLoading, error }) => {
-  // const id = useParams();
-
-  // const GetDataActivity = () => {
-  //   const [userDataActivity, setUserDataActivity] = useState('');
-  //   const [isLoading, setIsLoading] = useState(true);
-  //   const [error, setError] = useState(false);
-
-  //   useEffect(() => {
-  //     const userId = id.userId;
-  //     //react axios get method
-  //     const fetchUserData = async () => {
-  //       try {
-  //         const responseActivity = await sportSeeAPI.get(
-  //           `/user/${userId}/activity`
-  //         );
-
-  //         setUserDataActivity(responseActivity.data);
-
-  //         console.log('fetch async data Activity', responseActivity.data);
-
-  //         setIsLoading(false);
-  //       } catch (err) {
-  //         setError(true);
-  //         console.log(err.message);
-  //       } finally {
-  //         setIsLoading(false);
-  //       }
-  //     };
-
-  //     fetchUserData();
-  //   }, []);
-
-  //   return {
-  //     userDataActivity,
-  //     isLoading,
-  //     error,
-  //   };
-  // };
-
-  // const { userDataActivity, isLoading, error } = GetDataActivity();
-
   const maxWeight = userDataActivity.data.sessions.reduce(
     (prev, current) => Math.max(prev, current.kilogram),
     0

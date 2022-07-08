@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import UserDataContext from '../../utils/context/UserDataContext';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Error from '../../views/Error/Error';
 import Loader from '../Loader/Loader';
 import './Dashboard.scss';
@@ -12,18 +12,12 @@ import LineChartAverageSession from '../Charts/LineChartAverageSession/LineChart
 import RadarChartActivity from '../Charts/RadarChartActivity/RadarChartActivity';
 import BarChartDailyActivity from '../Charts/BarChartDailyActivity/BarChartDailyActivity';
 import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
-import { useLocation, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import sportSeeAPI from '../../api/sportSeeAPI';
-// import USER_MAIN_DATA from '../../data/mockedData';
-// import PropTypes from 'prop-types';
+
 const Dashboard = () => {
   const id = useParams();
   const userId = id.userId;
-  console.log('userId', id);
-  console.log('params id', id.userId);
-  // const location = useLocation();
-  // console.log('locATION', location);
 
   const [userData, setUserData] = useState('');
 
@@ -74,8 +68,6 @@ const Dashboard = () => {
     };
   };
   useEffect(() => {
-    //react axios get method
-
     fetchUserData();
   }, []);
 
@@ -102,7 +94,6 @@ const Dashboard = () => {
         <div className="charts-wrapper">
           <div className="daily-activity">
             <h3>Activité quotidienne</h3>
-            {/* <BarChartDailyActivity {...{ userDataActivity }} /> */}
             <BarChartDailyActivity {...{ userDataActivity }} />
           </div>
           <div className="squares-charts-container">

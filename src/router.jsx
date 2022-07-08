@@ -1,11 +1,9 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Profile from './views/Profile/Profile';
 import Error from './views/Error/Error';
 import Home from './views/Home/Home';
-import { pathByUser, userId } from './cfg';
 
 const Router = () => {
-  // console.log('path', pathByUser);
   return (
     <Routes>
       <Route path="/" element={<Home />} />
