@@ -16,11 +16,9 @@ import PieChartGoal from '../Charts/PieChartGoal/PieChartGoal';
 import sportSeeAPI from '../../api/sportSeeAPI';
 
 const Dashboard = () => {
-  const id = useParams();
-  const userId = id.userId;
+  const { id } = useParams();
 
   const [userData, setUserData] = useState('');
-
   const [userDataActivity, setUserDataActivity] = useState('');
   const [userDataAverage, setUserDataAverage] = useState('');
   const [userDataPerformance, setUserDataPerformance] = useState('');
@@ -29,35 +27,29 @@ const Dashboard = () => {
   const [error, setError] = useState(false);
 
   const fetchUserData = async () => {
-    try {
-      const response = await sportSeeAPI.get(`/user/${userId}`);
+    if (id)
+      try {
+        const response = await sportSeeAPI.get(`/user/${id}`);
+        const responseActivity = await sportSeeAPI.get(`/user/${id}/activity`);
+        const responseAverage = await sportSeeAPI.get(
+          `/user/${id}/average-sessions`
+        );
+        const responsePerformance = await sportSeeAPI.get(
+          `/user/${id}/performance`
+        );
 
-      const responseActivity = await sportSeeAPI.get(
-        `/user/${userId}/activity`
-      );
+        setUserData(response.data);
+        setUserDataActivity(responseActivity.data);
+        setUserDataAverage(responseAverage.data);
+        setUserDataPerformance(responsePerformance.data);
 
-      const responseAverage = await sportSeeAPI.get(
-        `/user/${userId}/average-sessions`
-      );
-      const responsePerformance = await sportSeeAPI.get(
-        `/user/${userId}/performance`
-      );
-
-      setUserData(response.data);
-
-      setUserDataActivity(responseActivity.data);
-      setUserDataAverage(responseAverage.data);
-      setUserDataPerformance(responsePerformance.data);
-
-      console.log('fetch async MAIN data', response.data);
-
-      setIsLoading(false);
-    } catch (err) {
-      setError(true);
-      console.log(err.message);
-    } finally {
-      setIsLoading(false);
-    }
+        setIsLoading(false);
+      } catch (err) {
+        setError(true);
+        console.log(err.message);
+      } finally {
+        setIsLoading(false);
+      }
     return {
       userData,
       userDataActivity,
@@ -71,8 +63,6 @@ const Dashboard = () => {
     fetchUserData();
   }, []);
 
-  // if (id === userID)
-  // console.log('userData ID', userData.data.id);
   // const error = !isLoading && !userData && userData.length === 0;
   if (error) {
     return <Error />;

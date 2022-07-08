@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Profile from './views/Profile/Profile';
 import Error from './views/Error/Error';
 import Home from './views/Home/Home';
@@ -7,10 +7,8 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      {/* <Route path={pathByUser} element={<Profile />} /> */}
-      {/* <Route path={`/user/${userId}`} element={<Profile />} /> */}
-      <Route path="/user/:userId/profile" element={<Profile />} />
-      {/* <Route path="*" element={<Navigate replace to="/error-page" />} /> */}
+      <Route path="/user/:id/profile" element={<Profile />} />
+      <Route path="*" element={<Navigate replace to="/error-page" />} />
       <Route path="/error-page" element={<Error />} />
     </Routes>
   );

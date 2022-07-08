@@ -11,17 +11,17 @@ const TopMenu = () => {
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to="/user/:userId/profile">
+          <Link className="top-nav--link" to="/user/:id/profile">
             Profil
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to="/user/:userId/settings">
+          <Link className="top-nav--link" to="/user/:id/settings">
             Réglage
           </Link>
         </li>
         <li>
-          <Link className="top-nav--link" to="/user/:userId/community">
+          <Link className="top-nav--link" to="/user/:id/community">
             Communauté
           </Link>
         </li>
