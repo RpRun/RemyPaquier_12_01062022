@@ -58,6 +58,7 @@ const Dashboard = () => {
       } finally {
         setIsLoading(false);
       }
+    console.log('activity', userDataActivity);
     return {
       userData,
       userDataActivity,
@@ -72,20 +73,91 @@ const Dashboard = () => {
     console.log('fetchUserData()');
     fetchUserData();
   }, []);
-  // mockedData.userData.id.toString() ===
-  // if (id) {
 
-  // }
-  const mockedUserData = () =>
-    USER_MAIN_DATA.forEach((user) =>
-      console.log('user mocké héhé', user.userInfos.firstName)
+  // MOCK URI // need to find by ID
+  /************ */
+  console.log(parseInt(id));
+  const usersMocked = () => USER_MAIN_DATA.map((user) => user.id);
+  if (mockedData.USER_MAIN_DATA.find((user) => user.id === parseInt(id))) {
+    console.log('toto', USER_MAIN_DATA);
+
+    console.log(usersMocked());
+    console.log(mockedData.USER_MAIN_DATA.data.userInfos);
+    const userDataActivity = USER_ACTIVITY;
+    const userDataAverage = USER_AVERAGE_SESSIONS;
+    const userDataPerformance = USER_PERFORMANCE;
+
+    return (
+      <main className="main-profile">
+        <div className="header-like">
+          <h2>
+            Bonjour{' '}
+            <span className="user-firstName">
+              {mockedData.USER_MAIN_DATA.data.userInfos.firstName}
+            </span>
+          </h2>
+          <p>Félicitations! Vous avez explosé vos objectifs hier👏</p>
+        </div>
+        <div className="main-content">
+          <div className="charts-wrapper">
+            <div className="daily-activity">
+              <h3>Activité quotidienne</h3>
+              <BarChartDailyActivity {...{ userDataActivity }} />
+            </div>
+            <div className="squares-charts-container">
+              <div className="square-chart--line">
+                <h3>
+                  Durée moyenne des <br /> sessions
+                </h3>
+                <LineChartAverageSession {...{ userDataAverage }} />
+              </div>
+              <div className="square-chart--radar">
+                <RadarChartActivity
+                  {...{ userDataPerformance, isLoading, error }}
+                />
+              </div>
+
+              <div className="square-chart--goal">
+                <PieChartGoal {...{ userData }} />
+                <h3>Score</h3>
+              </div>
+            </div>
+          </div>
+          <div className="nutrition-wrapper">
+            <KeyData
+              picture={Burn}
+              number={userData.data.keyData.calorieCount.toLocaleString(
+                'en-US'
+              )}
+              unit={'kCal'}
+              type={'Calories'}
+            />
+            <KeyData
+              picture={Chicken}
+              number={userData.data.keyData.proteinCount}
+              unit={'g'}
+              type={'Protéines'}
+            />
+            <KeyData
+              picture={Apple}
+              number={userData.data.keyData.carbohydrateCount}
+              unit={'g'}
+              type={'Glucides'}
+            />
+            <KeyData
+              picture={Burger}
+              number={userData.data.keyData.lipidCount}
+              unit={'g'}
+              type={'Lipides'}
+            />
+          </div>
+        </div>
+      </main>
     );
-  mockedUserData();
+  }
 
-  // const fetchMockedData = () => {
-  //   if (id === USER_MAIN_DATA.data.id)
-  // }
-
+  // ?****************?
+  // API URI
   // const error = !isLoading && !userData && userData.length === 0;
   if (error) {
     return <Error />;
